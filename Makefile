@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -lpthread -lsqlite3
+CFLAGS=-Wall -lpthread -lsqlite3 -luv
 
 all: sqlite-thread
 
