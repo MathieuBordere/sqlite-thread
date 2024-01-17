@@ -122,8 +122,6 @@ void* pthread_task(void* ctx) {
     return 0;
 }
 
-// TODO. The thread could be stepping the query further and just push to the output
-// queue without waiting for the main thread to handle the output.
 static void runPthread(char *path, int batchSize) {
     pthread_t t;
     sem_t sem_in;
