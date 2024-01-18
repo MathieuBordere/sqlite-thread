@@ -54,6 +54,8 @@ be to put a limit on the output queue and when that limit is reached for a certa
 another query in parallell.
 
 ```
+format: data/measurements/output-$mode-$rows-$batch_size
+
 ==============================================================================
 Output of running tests on database with 1.000 rows of 1KB
 
