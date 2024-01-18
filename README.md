@@ -1,6 +1,7 @@
 ## GOAL
 Measure the performance overhead of running a SQLite query in a thread that
-needs to coordinate with a libuv eventloop.
+needs to coordinate with a libuv eventloop. The tool just selects all the rows
+from the database provided to the tool.
 
 ## Scenarios
 1. base:  Run the query in a single thread, this is the fastest possible way to step a
@@ -11,17 +12,20 @@ worker thread to do work, when the work is done the worker signals the main
 thread that the work is done and sits waiting to be kicked again. This simulates
 the case where a request that is not handled fully is put on the input queue of
 a worker thread again. The worker thread returns control to the main thread after `batch_size` rows
-have been returned.
+have been returned. This simulates the case where a request is put on the input queue
+of a worker thread, the worker thread steps the query, fills a batch, returns control
+to another thread that sends the result to a client and asks the worker thread to continue
+stepping the query.
 3. uvpthread: Run the query from a pthread that coordinates with a libuv eventloop. The
 eventloop wakes up the pthread when there's work to do while the pthread wakes
 up the libuv eventloop with `uv_async_send`. The threads also play ping-pong
-like before and also returns control to the eventloop after `batch_size` rows.
+like before and also returns control to the eventloop after `batch_size` rows. Simulates the
+same use-case as pthread, but with a libuv eventloop acting as the main thread.
 4. uvpthreadcont: Run the query from a pthread, but the worker thread keeps on working until
-all work is done and pushes results onto a queue for the main thread to
-handle. Every time `batch_size` rows have been collected, the worker pushes a result to the main thread.
+all work is done and pushes results onto a queue every time `batch_size` rows have been collected
+for the main thread to handle.
 In this test there is no real output pushed on a queue, but it's simulated by the main
-thread and worker thread coordinating with a mutex to access a shared
-data-structure.
+thread and worker thread coordinating with a mutex to access a shared data-structure.
 
 ## Options
 Configurable batch size: larger batch => less context switching.
