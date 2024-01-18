@@ -25,11 +25,11 @@ Configurable batch size: larger batch => less context switching.
 
 ## Usage
 ```
-./sqlite-thread -p <path> -m <mode> -b <batchSize>
+./sqlite-thread -p <path> -m <mode> -b <batch_size>
 
 <path> the tool expects to find a table called 'benchmark' in the db found here.
 <mode> is one of base, pthread, uvpthread or uvpthreadcont
-<batchSize> determines the amount of rows queried before returning control to
+<batch_size> determines the amount of rows queried before returning control to
 the main thread or pushing output to some queue.
 ```
 
