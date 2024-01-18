@@ -53,6 +53,7 @@ point of attention in this mode is that the worker shouldn't let the output queu
 be to put a limit on the output queue and when that limit is reached for a certain query, the DbThread starts handling
 another query in parallell.
 
+```
 ==============================================================================
 Output of running tests on database with 1.000 rows of 1KB
 
@@ -136,3 +137,4 @@ data/measurements/output-base-1000000-1024:           355,45 msec task-clock
 data/measurements/output-pthread-1000000-1024:        393,58 msec task-clock       
 data/measurements/output-uvpthread-1000000-1024:      398,66 msec task-clock     
 data/measurements/output-uvpthreadcont-1000000-1024:  378,08 msec task-clock 
+```
