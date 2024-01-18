@@ -1,0 +1,21 @@
+
+ Performance counter stats for './sqlite-thread -p data/benchmark-1000.db -m pthread -b 128':
+
+              3,06 msec task-clock                       #    0,903 CPUs utilized             
+                16      context-switches                 #    5,235 K/sec                     
+                 0      cpu-migrations                   #    0,000 /sec                      
+               480      page-faults                      #  157,042 K/sec                     
+        11.078.554      cycles                           #    3,625 GHz                         (79,33%)
+            57.579      stalled-cycles-frontend          #    0,52% frontend cycles idle      
+             8.962      stalled-cycles-backend           #    0,08% backend cycles idle       
+        10.113.678      instructions                     #    0,91  insn per cycle            
+                                                  #    0,01  stalled cycles per insn   
+         2.110.717      branches                         #  690,566 M/sec                     
+           226.009      branch-misses                    #   10,71% of all branches             (20,91%)
+
+       0,003385777 seconds time elapsed
+
+       0,000000000 seconds user
+       0,003467000 seconds sys
+
+

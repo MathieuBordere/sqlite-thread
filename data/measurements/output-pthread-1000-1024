@@ -1,0 +1,25 @@
+
+ Performance counter stats for './sqlite-thread -p data/benchmark-1000.db -m pthread -b 1024':
+
+              2,81 msec task-clock                       #    0,894 CPUs utilized             
+                 2      context-switches                 #  712,145 /sec                      
+                 0      cpu-migrations                   #    0,000 /sec                      
+               480      page-faults                      #  170,915 K/sec                     
+        11.551.871      cycles                           #    4,113 GHz                       
+            45.698      stalled-cycles-frontend          #    0,40% frontend cycles idle      
+         2.454.736      stalled-cycles-backend           #   21,25% backend cycles idle       
+        10.004.436      instructions                     #    0,87  insn per cycle            
+                                                  #    0,25  stalled cycles per insn   
+         2.086.029      branches                         #  742,778 M/sec                     
+     <not counted>      branch-misses                                                           (0,00%)
+
+       0,003141977 seconds time elapsed
+
+       0,003243000 seconds user
+       0,000000000 seconds sys
+
+
+Some events weren't counted. Try disabling the NMI watchdog:
+	echo 0 > /proc/sys/kernel/nmi_watchdog
+	perf stat ...
+	echo 1 > /proc/sys/kernel/nmi_watchdog
